@@ -1,5 +1,5 @@
-```gitignore
-# Dependencies
+```
+# Python
 __pycache__/
 *.pyc
 *.pyo
@@ -9,52 +9,48 @@ env/
 venv/
 .venv/
 .ENV
-.venv.bak/
-pip-log.txt
-pip-selfcheck.json
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.log
-*.tmp
-*.swp
-*.swo
-.DS_Store
-Thumbs.db
-
-# Build and distribution artifacts
-dist/
-build/
-*.egg-info/
-.eggs/
-.installed.cfg
-*.egg
-
-# Modal specific
-.modal/
-.modal-cache/
-.modal-logs/
-
-# Environment variables
+.ENV.local
 .env
 .env.local
-*.env.*
+.env.*
+.python-version
+.pytest_cache/
+.mypy_cache/
 
-# IDE specific
+# Build artifacts
+build/
+dist/
+*.egg
+*.egg-info/
+*.so
+*.whl
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
 .vscode/
 .idea/
-*.sublime-project
-*.sublime-workspace
-```
+*.swp
+*.swo
+*.tmp
 
-Wait, let me reconsider. Looking at the actual added files, they are all source/config files (.py, .md, .yaml, .sh) and there are no build artifacts, dependency directories, or temporary files in the changes. The existing .gitignore only has standard Python ignores which are appropriate.
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
 
-Since the file changes contain only source files and no build artifacts, according to rule #6, I should output nothing.
-
-```gitignore
-
+# Dependencies
+node_modules/
+.jupyter/
+.jupyterlab/
 ```

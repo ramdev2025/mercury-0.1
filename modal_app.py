@@ -91,6 +91,62 @@ outputs_volume = modal.Volume.from_name("video-moe-outputs", create_if_missing=T
 music_volume = modal.Volume.from_name("video-moe-music", create_if_missing=True)
 
 
+# ── YouTube Download Function ──────────────────────────────────
+@app.function(
+    gpu=modal.gpu.T4(count=1),  # T4 is sufficient for downloading
+    image=image.apt_install("yt-dlp"),
+    secrets=secrets,
+    volumes={
+        "/workspace/data": data_volume,
+    },
+    timeout=600,  # 10 minutes max
+)
+def download_video_task(youtube_url: str, output_filename: str = "music_video_01.mp4"):
+    """Download a YouTube video inside Modal environment (bypasses some restrictions)."""
+    import subprocess
+    import os
+    
+    output_path = f"/workspace/data/raw/{output_filename}"
+    os.makedirs("/workspace/data/raw", exist_ok=True)
+    
+    cmd = [
+        "yt-dlp",
+        "-f", "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
+        "--merge-output-format", "mp4",
+        "-o", output_path,
+        "--no-check-certificates",
+        youtube_url
+    ]
+    
+    print(f"Downloading: {youtube_url}")
+    print(f"Output: {output_path}")
+    
+    try:
+        result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+        print(result.stdout)
+        print(f"✅ Successfully downloaded to {output_path}")
+        return True
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Download failed: {e}")
+        print(e.stderr)
+        return False
+
+
+@app.local_entrypoint()
+def download(youtube_url: str, output_filename: str = "music_video_01.mp4"):
+    """Download a YouTube video to the data volume.
+    
+    Usage:
+        modal run modal_app.py::download --youtube-url "https://youtu.be/mrV8kK5t0V8" --output-filename "my_music_video.mp4"
+    """
+    result = download_video_task.remote(youtube_url, output_filename)
+    if result:
+        print(f"\n✅ Video downloaded! You can now run:")
+        print(f"   modal run modal_app.py::ingest_dataset --data-dir /workspace/data/raw")
+    else:
+        print("\n❌ Download failed. Try downloading manually and uploading to Modal volume.")
+
+
 # ── Training Function ──────────────────────────────────────────
 @app.function(
     gpu=modal.gpu.L4(count=1),
