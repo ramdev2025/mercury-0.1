@@ -1,0 +1,56 @@
+# AnimateDiff Video Generation Config
+
+# ── Base Model ────────────────────────────────────────────────
+base_model: "runwayml/stable-diffusion-v1-5"  # or "stabilityai/stable-diffusion-xl-base-1.0"
+revision: "main"
+
+# ── Motion Module ─────────────────────────────────────────────
+motion_module: "guoyww/animatediff/mm_sd_v15_v2.ckpt"
+motion_module_type: "TemporalAttention"  # or "TemporalConv"
+
+# ── MoE Configuration ─────────────────────────────────────────
+use_moe: true
+num_experts: 8
+top_k: 2
+moe_dropout: 0.1
+aux_loss_weight: 0.01
+
+# ── Generation Parameters ─────────────────────────────────────
+default_prompt: ""
+default_negative_prompt: "blurry, low quality, distorted, deformed, ugly, bad anatomy"
+resolution: [512, 512]  # [width, height]
+fps: 24
+duration: 8  # seconds
+num_frames: null  # auto-calculated from duration * fps
+
+# ── Inference Settings ────────────────────────────────────────
+num_inference_steps: 25
+guidance_scale: 7.5
+motion_strength: 0.7
+audio_sync_intensity: 0.5
+use_fp16: true
+seed: null  # random if null
+
+# ── Audio Configuration ───────────────────────────────────────
+audio_encoder: "facebook/audioencoderv2-large"  # HuggingFace audio encoder
+beat_detection_threshold: 0.3
+tempo_multiplier: 1.0
+
+# ── VAE Settings ──────────────────────────────────────────────
+vae_type: "stabilityai/sd-vae-ft-mse"
+vae_chunk_size: 8  # for memory efficiency
+
+# ── Output Settings ───────────────────────────────────────────
+output_format: "mp4"
+output_codec: "h264"
+output_crf: 18  # quality (lower=better, 18 is high quality)
+save_individual_frames: false
+
+# ── Memory Optimization ───────────────────────────────────────
+enable_attention_slicing: true
+enable_xformers: true
+gradient_checkpointing: false  # only needed for training
+
+# ── Batch Generation ──────────────────────────────────────────
+max_batch_frames: 48  # max frames per batch to avoid OOM
+overlap_frames: 4  # frames overlap between batches for smoothness

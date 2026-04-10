@@ -13,6 +13,17 @@ torchaudio>=2.1.0
 decord>=0.6.0              # fast GPU-accelerated video reading
 opencv-python>=4.8.0      # frame manipulation + mock dataset generation
 
+# ── AnimateDiff & Generation ──────────────────────────────────
+diffusers>=0.24.0          # HuggingFace diffusion models
+transformers>=4.35.0       # Transformer models
+accelerate>=0.25.0         # Model acceleration
+einops>=0.7.0             # Tensor operations for video
+xformers>=0.0.23          # Efficient attention (optional but recommended)
+
+# ── Audio Processing ──────────────────────────────────────────
+librosa>=0.10.0           # audio feature extraction
+scipy>=1.11.0             # audio interpolation
+
 # ── Training utilities ────────────────────────────────────────
 pyyaml>=6.0               # config loading
 tensorboard>=2.14.0       # training curves
@@ -21,6 +32,9 @@ tqdm>=4.66.0              # progress bars
 # ── Data / math ───────────────────────────────────────────────
 numpy>=1.24.0
 Pillow>=10.0.0
+
+# ── Modal & Deployment ────────────────────────────────────────
+modal>=0.60.0             # Modal.com deployment
 
 # ── Optional: 8-bit Adam (saves optimizer VRAM) ───────────────
 # Uncomment if you want even more VRAM savings:
