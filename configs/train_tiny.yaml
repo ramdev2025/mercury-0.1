@@ -1,0 +1,49 @@
+# VideoMoE Training Config — Optimized for RTX 4060 8GB VRAM
+# ─────────────────────────────────────────────────────────────
+
+# ── Dataset ──────────────────────────────────────────────────
+data_root: "data/ucf101"
+num_classes: 101
+split_id: 1                  # UCF-101 has 3 official splits
+
+# ── Video preprocessing ───────────────────────────────────────
+num_frames: 8                # frames per clip (more = more VRAM)
+image_size: 224              # spatial resolution
+frame_stride: 4              # sample every 4th frame from video
+
+# ── Model architecture ────────────────────────────────────────
+model_size: "tiny"           # tiny (~80M) | small (~150M) | base (needs 16GB)
+patch_size: 16               # spatial patch size
+tube_size: 2                 # temporal tube depth
+num_experts: 8               # total MoE experts
+top_k: 2                     # active experts per token
+moe_every_n: 2               # MoE every N blocks (rest are dense)
+dropout: 0.1
+aux_loss_weight: 0.01        # load-balancing loss weight
+
+# ── Training ──────────────────────────────────────────────────
+epochs: 50
+batch_size: 4                # per-GPU batch size (safe for 8GB)
+gradient_accumulation_steps: 8  # effective batch = 4 × 8 = 32
+gradient_checkpointing: true    # saves ~40% VRAM
+
+# ── Optimizer ────────────────────────────────────────────────
+lr: 1.0e-4
+weight_decay: 0.05
+label_smoothing: 0.1
+warmup_epochs: 5
+
+# ── Precision & Speed ─────────────────────────────────────────
+use_amp: true                # fp16 mixed precision
+num_workers: 4               # DataLoader workers
+
+# ── Paths ─────────────────────────────────────────────────────
+checkpoint_dir: "checkpoints"
+log_dir: "logs"
+
+# ── VRAM Budget Reference (RTX 4060 8GB) ─────────────────────
+# Model params (fp16):   ~160 MB
+# Optimizer states:      ~480 MB
+# Activations (bs=4):   ~3.5 GB
+# Grad checkpointing:   saves ~1.5 GB
+# Peak estimate:        ~5.5–6.5 GB  ✓ fits in 8GB

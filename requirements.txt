@@ -1,0 +1,38 @@
+# VideoMoE dependencies
+# RTX 4060 — CUDA 12.x compatible
+# Install: pip install -r requirements.txt
+
+# ── Core PyTorch (CUDA 12.1) ──────────────────────────────────
+# Install separately: https://pytorch.org/get-started/locally/
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+torch>=2.1.0
+torchvision>=0.16.0
+torchaudio>=2.1.0
+
+# ── Video I/O ─────────────────────────────────────────────────
+decord>=0.6.0              # fast GPU-accelerated video reading
+opencv-python>=4.8.0      # frame manipulation + mock dataset generation
+
+# ── Training utilities ────────────────────────────────────────
+pyyaml>=6.0               # config loading
+tensorboard>=2.14.0       # training curves
+tqdm>=4.66.0              # progress bars
+
+# ── Data / math ───────────────────────────────────────────────
+numpy>=1.24.0
+Pillow>=10.0.0
+
+# ── Optional: 8-bit Adam (saves optimizer VRAM) ───────────────
+# Uncomment if you want even more VRAM savings:
+# bitsandbytes>=0.41.0
+
+# ── Development ───────────────────────────────────────────────
+ipykernel>=6.25.0         # Jupyter notebook support
+matplotlib>=3.7.0         # plotting
+seaborn>=0.13.0           # visualization
+
+# ── Notes ─────────────────────────────────────────────────────
+# For .rar extraction of UCF-101:
+#   sudo apt install unrar
+# Or use 7zip:
+#   sudo apt install p7zip-full
