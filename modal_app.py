@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-VideoMoE on Modal — L4 GPU Environment
+MercuryMoE on Modal — L4 GPU Environment
 
 Usage:
     # Deploy and run training:
@@ -27,9 +27,9 @@ LOCAL_DIR = Path(__file__).parent
 
 # ── Secrets ────────────────────────────────────────────────────
 # Load secrets from Modal (API keys, etc.)
-# Create with: modal secret create videomoe-secrets MODAL_API_KEY=<your_key>
+# Create with: modal secret create mercury-moe-secrets MODAL_API_KEY=<your_key>
 try:
-    secrets = [modal.Secret.from_name("videomoe-secrets")]
+    secrets = [modal.Secret.from_name("mercury-moe-secrets")]
 except Exception:
     # Fallback if secret doesn't exist yet
     secrets = []

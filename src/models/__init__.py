@@ -1,4 +1,4 @@
-from .video_moe import VideoMoE
+from .video_moe import MercuryMoE, VideoMoE
 from .moe import MoELayer, SparseRouter, ExpertFFN
 from .tokenizer import TubeletEmbedding, CLSTokenWrapper
 from .animatediff import (
@@ -15,8 +15,9 @@ from .audio_sync import (
 )
 
 __all__ = [
-    # Original VideoMoE
-    "VideoMoE",
+    # Mercury-MoE (new name)
+    "MercuryMoE",
+    "VideoMoE",  # Alias for backward compatibility
     "MoELayer",
     "SparseRouter",
     "ExpertFFN",

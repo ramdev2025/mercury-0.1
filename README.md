@@ -1,4 +1,4 @@
-# VideoMoE-Tiny 🎬
+# MercuryMoE-Tiny 🎬
 
 > A Video Transformer with **Sparse Mixture of Experts (MoE)** layers, built from scratch  
 > and tuned to train on **8GB VRAM** (RTX 4060).
@@ -7,7 +7,7 @@
 
 ## What Is This?
 
-**VideoMoE-Tiny** is a lightweight video understanding model that:
+**MercuryMoE-Tiny** is a lightweight video understanding model that:
 - Tokenizes video clips into space-time patches (Tubelet Embedding — like VideoMAE)
 - Processes them through a Transformer where **FFN layers are replaced with sparse MoE**
 - Routes each token to the Top-2 of 8 specialized experts
@@ -140,7 +140,7 @@ video-moe/
 │   ├── models/
 │   │   ├── moe.py          ← MoE layer, sparse router, expert FFN
 │   │   ├── tokenizer.py    ← Tubelet embedding, CLS token
-│   │   └── video_moe.py    ← Full VideoMoE model
+│   │   └── video_moe.py    ← Full MercuryMoE model
 │   ├── data/
 │   │   └── ucf101.py       ← UCF-101 dataset loader + augmentations
 │   ├── training/
@@ -202,8 +202,8 @@ On UCF-101 (split 1), training 50 epochs:
 
 | Model | Top-1 Acc | Top-5 Acc | Epochs |
 |-------|-----------|-----------|--------|
-| VideoMoE-Tiny (scratch) | ~65–72% | ~88–92% | 50 |
-| VideoMoE-Tiny (pretrained backbone) | ~80%+ | ~95%+ | 20 |
+| MercuryMoE-Tiny (scratch) | ~65–72% | ~88–92% | 50 |
+| MercuryMoE-Tiny (pretrained backbone) | ~80%+ | ~95%+ | 20 |
 
 > **Tip**: Initialize the TubeletEmbedding + Transformer with ViT-Small ImageNet weights  
 > for a big accuracy boost with minimal code changes.

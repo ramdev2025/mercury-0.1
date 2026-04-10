@@ -1,5 +1,5 @@
 """
-Training Engine for VideoMoE.
+Training Engine for MercuryMoE.
 
 Features:
   - Mixed precision (fp16 / bf16) via torch.amp
@@ -23,7 +23,7 @@ from pathlib import Path
 from typing import Optional
 import json
 
-from ..models import VideoMoE
+from ..models import MercuryMoE
 from ..utils.metrics import AverageMeter, accuracy
 
 
@@ -46,7 +46,7 @@ class Trainer:
         self.best_acc = 0.0
 
     def _setup_model(self):
-        self.model = VideoMoE(
+        self.model = MercuryMoE(
             num_classes=self.cfg["num_classes"],
             model_size=self.cfg.get("model_size", "tiny"),
             image_size=self.cfg["image_size"],
@@ -243,7 +243,7 @@ class Trainer:
     def fit(self, train_loader, val_loader):
         """Main training loop."""
         print(f"\n{'='*60}")
-        print(f"  VideoMoE Training")
+        print(f"  MercuryMoE Training")
         print(f"  Epochs: {self.cfg['epochs']}")
         print(f"  Batch size: {self.cfg['batch_size']} × {self.cfg.get('gradient_accumulation_steps', 4)} accum")
         print(f"  Effective batch: {self.cfg['batch_size'] * self.cfg.get('gradient_accumulation_steps', 4)}")

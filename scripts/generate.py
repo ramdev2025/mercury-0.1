@@ -35,7 +35,7 @@ def parse_args():
 def main():
     args = parse_args()
     
-    print("🎬 VideoMoE + AnimateDiff Generator")
+    print("🎬 MercuryMoE + AnimateDiff Generator")
     print("=" * 50)
     print(f"Prompt: {args.prompt}")
     print(f"Audio: {args.audio if args.audio else 'None'}")
@@ -75,7 +75,7 @@ def main():
     print("\n⚠️  NOTE: Full generation pipeline implementation pending.")
     print("\nTo complete the setup, you need to:")
     print("1. Install all dependencies: pip install -r requirements.txt")
-    print("2. Set HuggingFace token: modal secret create videomoe-secrets HF_TOKEN=<your_token>")
+    print("2. Set HuggingFace token: modal secret create mercury-moe-secrets HF_TOKEN=<your_token>")
     print("3. The generation script will use diffusers + AnimateDiff when fully implemented")
     
     print(f"\n✅ Setup complete! Ready for video generation on Modal L4 GPUs.")

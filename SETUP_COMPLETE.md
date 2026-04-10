@@ -1,4 +1,4 @@
-# 🎬 VideoMoE + AnimateDiff - Music Video Generator
+# 🎬 MercuryMoE + AnimateDiff - Music Video Generator
 
 ## ✅ Setup Complete!
 
@@ -12,7 +12,7 @@ Your project is now configured as an **MoE-powered AI video generation beast** f
 
 | Component | Status | Purpose |
 |-----------|--------|---------|
-| **VideoMoE Classifier** | ✅ Ready | Original sparse MoE video understanding |
+| **MercuryMoE Classifier** | ✅ Ready | Original sparse MoE video understanding |
 | **AnimateDiff Motion Module** | ✅ Ready | Temporal attention for smooth video generation |
 | **Audio Sync Engine** | ✅ Ready | Beat detection & music synchronization |
 | **Modal L4 Deployment** | ✅ Ready | 24GB VRAM GPU cloud infrastructure |
@@ -49,7 +49,7 @@ pip install modal
 modal token new
 
 # Create secrets (paste your keys when prompted)
-modal secret create videomoe-secrets \
+modal secret create mercury-moe-secrets \
     MODAL_API_KEY="<your_modal_api_key>" \
     HF_TOKEN="<your_huggingface_token>"
 ```

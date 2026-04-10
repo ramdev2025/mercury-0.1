@@ -1,7 +1,7 @@
 """
 UCF-101 Dataset Loader.
 
-Downloads and preprocesses UCF-101 for VideoMoE training.
+Downloads and preprocesses UCF-101 for MercuryMoE training.
 UCF-101: 101 action classes, ~13,000 clips, 25 FPS, variable length.
 
 Usage:
