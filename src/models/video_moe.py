@@ -1,5 +1,5 @@
 """
-VideoMoE-Tiny — Full Video Transformer with sparse MoE FFN layers.
+Mercury-MoE-Tiny — Full Video Transformer with sparse MoE FFN layers.
 
 Architecture overview:
   ┌─────────────────────────────────────────┐
@@ -106,9 +106,9 @@ class MoETransformerBlock(nn.Module):
         return x, aux_loss
 
 
-class VideoMoE(nn.Module):
+class MercuryMoE(nn.Module):
     """
-    VideoMoE-Tiny: Full video action recognition model.
+    Mercury-MoE-Tiny: Full video action recognition model.
 
     Model sizes (approximate):
         tiny   — dim=384, heads=6,  layers=12 → ~80M params
@@ -228,3 +228,7 @@ class VideoMoE(nn.Module):
         total = sum(p.numel() for p in self.parameters())
         trainable = sum(p.numel() for p in self.parameters() if p.requires_grad)
         return {"total": total, "trainable": trainable, "total_M": total / 1e6}
+
+
+# Backward compatibility alias
+VideoMoE = MercuryMoE

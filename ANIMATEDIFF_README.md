@@ -1,8 +1,8 @@
-# VideoMoE + AnimateDiff - Music Video Generator 🎬🎵
+# MercuryMoE + AnimateDiff - Music Video Generator 🎬🎵
 
 ## Overview
 
-This project combines **VideoMoE** (sparse MoE architecture) with **AnimateDiff** for generating animated music videos and short scene films.
+This project combines **MercuryMoE** (sparse MoE architecture) with **AnimateDiff** for generating animated music videos and short scene films.
 
 ### What You Get
 
@@ -57,7 +57,7 @@ pip install modal
 modal token new
 
 # Create secrets (paste your API keys when prompted)
-modal secret create videomoe-secrets \
+modal secret create mercury-moe-secrets \
     MODAL_API_KEY=<your_key> \
     HF_TOKEN=<your_huggingface_token>
 ```
@@ -152,7 +152,7 @@ workspace/
 ├── modal_app.py              # Modal deployment (train/generate/shell)
 ├── src/
 │   ├── models/
-│   │   ├── video_moe.py      # VideoMoE classifier (original)
+│   │   ├── video_moe.py      # MercuryMoE classifier (original)
 │   │   ├── moe.py            # MoE layers
 │   │   ├── animatediff.py    # AnimateDiff temporal modules ⭐ NEW
 │   │   ├── audio_sync.py     # Audio synchronization ⭐ NEW
@@ -242,7 +242,7 @@ modal run modal_app.py::train_motion \
 Required secrets in Modal:
 
 ```bash
-modal secret create videomoe-secrets \
+modal secret create mercury-moe-secrets \
     MODAL_API_KEY="<your_modal_key>" \
     HF_TOKEN="<your_huggingface_token>" \
     WANDB_API_KEY="<optional_wandb_key>"
@@ -277,7 +277,7 @@ modal secret create videomoe-secrets \
 - [AnimateDiff](https://github.com/guoyww/AnimateDiff) - Motion module for SD
 - [Stable Diffusion](https://github.com/CompVis/stable-diffusion) - Base image model
 - [AudioLDM](https://github.com/haoheliu/AudioLDM) - Audio understanding
-- [VideoMoE](./README.md) - Original MoE architecture
+- [MercuryMoE](./README.md) - Original MoE architecture
 
 ---
 

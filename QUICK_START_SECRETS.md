@@ -5,13 +5,13 @@
 Run this command in your terminal, replacing `<YOUR_API_KEY>` with your actual Modal API key:
 
 ```bash
-modal secret create videomoe-secrets MODAL_API_KEY=<YOUR_API_KEY>
+modal secret create mercury-moe-secrets MODAL_API_KEY=<YOUR_API_KEY>
 ```
 
 ## Option 2: Interactive Mode
 
 ```bash
-modal secret create videomoe-secrets
+modal secret create mercury-moe-secrets
 ```
 
 Then follow the prompts to add your `MODAL_API_KEY`.
@@ -20,7 +20,7 @@ Then follow the prompts to add your `MODAL_API_KEY`.
 
 1. Go to [https://modal.com/secrets](https://modal.com/secrets)
 2. Click **"Create Secret"**
-3. Name it: `videomoe-secrets`
+3. Name it: `mercury-moe-secrets`
 4. Add key: `MODAL_API_KEY`
 5. Paste your API key value
 6. Click **Save**
@@ -35,7 +35,7 @@ After creating the secret, verify it exists:
 modal secret list
 ```
 
-You should see `videomoe-secrets` in the list.
+You should see `mercury-moe-secrets` in the list.
 
 ---
 
@@ -63,7 +63,7 @@ Once your secret is set up:
 ## What We Configured
 
 Your `modal_app.py` now:
-- ✅ Loads secrets from `videomoe-secrets`
+- ✅ Loads secrets from `mercury-moe-secrets`
 - ✅ Makes `MODAL_API_KEY` available as an environment variable in your Modal functions
 - ✅ Gracefully handles cases where the secret doesn't exist yet (won't crash)
 - ✅ Uses L4 GPUs with persistent volumes for data/checkpoints/logs

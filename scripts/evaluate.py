@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Evaluate a trained VideoMoE checkpoint.
+Evaluate a trained MercuryMoE checkpoint.
 
 Usage:
     # Evaluate on UCF-101 test set
@@ -26,7 +26,7 @@ from torch.cuda.amp import autocast
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src.models import VideoMoE
+from src.models import MercuryMoE
 from src.data.ucf101 import UCF101Dataset, build_dataloaders
 from src.utils.metrics import AverageMeter, accuracy
 from src.utils.vram import print_vram
@@ -37,7 +37,7 @@ def load_model_from_checkpoint(ckpt_path: str, device: torch.device) -> tuple:
     state = torch.load(ckpt_path, map_location=device)
     cfg   = state["cfg"]
 
-    model = VideoMoE(
+    model = MercuryMoE(
         num_classes=cfg["num_classes"],
         model_size=cfg.get("model_size", "tiny"),
         image_size=cfg["image_size"],

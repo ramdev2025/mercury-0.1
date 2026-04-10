@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Train VideoMoE-Tiny on UCF-101.
+Train MercuryMoE-Tiny on UCF-101.
 
 Usage:
     python scripts/train.py --config configs/train_tiny.yaml
@@ -26,11 +26,11 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.training.trainer import Trainer
 from src.data.ucf101 import build_dataloaders
 from src.utils.vram import print_vram, estimate_model_vram, clear_vram
-from src.models import VideoMoE
+from src.models import MercuryMoE
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Train VideoMoE")
+    parser = argparse.ArgumentParser(description="Train MercuryMoE")
     parser.add_argument("--config", type=str, default="configs/train_tiny.yaml")
     parser.add_argument("--resume", type=str, default=None)
     # Allow config overrides from CLI
@@ -66,7 +66,7 @@ def main():
 
     # Pre-flight VRAM check
     if torch.cuda.is_available():
-        model_check = VideoMoE(
+        model_check = MercuryMoE(
             num_classes=cfg["num_classes"],
             model_size=cfg.get("model_size", "tiny"),
             num_frames=cfg["num_frames"],

@@ -1,6 +1,6 @@
-# VideoMoE on Modal — L4 GPU Setup Guide
+# MercuryMoE on Modal — L4 GPU Setup Guide
 
-This guide explains how to run the VideoMoE project on Modal.com using L4 GPUs.
+This guide explains how to run the MercuryMoE project on Modal.com using L4 GPUs.
 
 ## Prerequisites
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Upload dataset to Modal Volume for VideoMoE.
+Upload dataset to Modal Volume for MercuryMoE.
 
 Usage:
     python upload_data.py --data_dir data/ucf101

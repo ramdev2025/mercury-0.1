@@ -1,4 +1,4 @@
-# 🎬 VideoMoE Music Video Generator - Complete Setup Guide
+# 🎬 MercuryMoE Music Video Generator - Complete Setup Guide
 
 A complete guide to setting up and deploying your **MoE-powered AI video generation system** for music videos and short films on **Modal.com** using **L4 GPUs**.
 
@@ -109,7 +109,7 @@ Secrets are required for API access to Hugging Face and Modal services.
 
 1. Go to [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)
 2. Click **"New token"**
-3. Name it `videomoe`
+3. Name it `mercury-moe`
 4. Select **"Read"** permissions
 5. Copy the token (starts with `hf_...`)
 
@@ -118,7 +118,7 @@ Secrets are required for API access to Hugging Face and Modal services.
 **Option A: One-Line Command (Recommended)**
 
 ```bash
-modal secret create videomoe-secrets \
+modal secret create mercury-moe-secrets \
     MODAL_API_KEY="<paste_your_modal_api_key>" \
     HF_TOKEN="<paste_your_huggingface_token>"
 ```
@@ -126,7 +126,7 @@ modal secret create videomoe-secrets \
 **Option B: Interactive Mode**
 
 ```bash
-modal secret create videomoe-secrets
+modal secret create mercury-moe-secrets
 # Follow prompts to add MODAL_API_KEY and HF_TOKEN
 ```
 
@@ -134,7 +134,7 @@ modal secret create videomoe-secrets
 
 1. Visit [modal.com/secrets](https://modal.com/secrets)
 2. Click **"Create Secret"**
-3. Name: `videomoe-secrets`
+3. Name: `mercury-moe-secrets`
 4. Add keys:
    - `MODAL_API_KEY` = your Modal API key
    - `HF_TOKEN` = your Hugging Face token
@@ -144,7 +144,7 @@ modal secret create videomoe-secrets
 
 ```bash
 modal secret list
-# Should show: videomoe-secrets
+# Should show: mercury-moe-secrets
 ```
 
 ---
@@ -402,8 +402,8 @@ modal shell modal_app.py
 Inside the shell:
 ```python
 # Test model loading
-from src.models.animatediff import VideoMoE
-model = VideoMoE.from_pretrained("checkpoints/latest.pt")
+from src.models.animatediff import MercuryMoE
+model = MercuryMoE.from_pretrained("checkpoints/latest.pt")
 
 # Test data loading
 import torch
@@ -445,8 +445,8 @@ modal token new
 **Solution:**
 ```bash
 modal secret list
-# Verify 'videomoe-secrets' exists
-modal secret create videomoe-secrets MODAL_API_KEY=... HF_TOKEN=...
+# Verify 'mercury-moe-secrets' exists
+modal secret create mercury-moe-secrets MODAL_API_KEY=... HF_TOKEN=...
 ```
 
 ### Problem: "CUDA Out of Memory"
@@ -518,7 +518,7 @@ modal run modal_app.py::generate --resolution 512
 modal token new
 
 # Secrets
-modal secret create videomoe-secrets MODAL_API_KEY=... HF_TOKEN=...
+modal secret create mercury-moe-secrets MODAL_API_KEY=... HF_TOKEN=...
 modal secret list
 
 # Data

@@ -1,5 +1,5 @@
-# Script to setup Modal secrets for your VideoMoE project
-# This will create a secret named "videomoe-secrets" with your MODAL_API_KEY
+# Script to setup Modal secrets for your MercuryMoE project
+# This will create a secret named "mercury-moe-secrets" with your MODAL_API_KEY
 
 echo "=== Modal Secret Setup ==="
 echo ""
@@ -30,18 +30,18 @@ echo "✓ Modal authentication confirmed"
 echo ""
 
 # Create the secret
-echo "Creating Modal secret 'videomoe-secrets'..."
+echo "Creating Modal secret 'mercury-moe-secrets'..."
 echo ""
 echo "You will be prompted to enter your MODAL_API_KEY."
 echo "Paste your API key when prompted (it won't be visible as you type):"
 echo ""
 
 # Use modal secret create with interactive input
-modal secret create videomoe-secrets MODAL_API_KEY
+modal secret create mercury-moe-secrets MODAL_API_KEY
 
 if [ $? -eq 0 ]; then
     echo ""
-    echo "✓ Secret 'videomoe-secrets' created successfully!"
+    echo "✓ Secret 'mercury-moe-secrets' created successfully!"
     echo ""
     echo "Your modal_app.py is configured to use this secret."
     echo ""
@@ -53,7 +53,7 @@ if [ $? -eq 0 ]; then
 else
     echo ""
     echo "⚠️  Failed to create secret. Please try manually:"
-    echo "   modal secret create videomoe-secrets MODAL_API_KEY=<your_key>"
+    echo "   modal secret create mercury-moe-secrets MODAL_API_KEY=<your_key>"
     echo ""
 fi
 
@@ -63,16 +63,16 @@ echo "QUICK SETUP GUIDE"
 echo "============================================"
 echo ""
 echo "Option 1: Interactive (recommended)"
-echo "  modal secret create videomoe-secrets"
+echo "  modal secret create mercury-moe-secrets"
 echo "  (Then follow the prompts to add MODAL_API_KEY)"
 echo ""
 echo "Option 2: One-line command"
-echo "  modal secret create videomoe-secrets MODAL_API_KEY=<paste_your_key_here>"
+echo "  modal secret create mercury-moe-secrets MODAL_API_KEY=<paste_your_key_here>"
 echo ""
 echo "Option 3: Via Modal Dashboard"
 echo "  1. Go to https://modal.com/secrets"
 echo "  2. Click 'Create Secret'"
-echo "  3. Name it: videomoe-secrets"
+echo "  3. Name it: mercury-moe-secrets"
 echo "  4. Add key: MODAL_API_KEY"
 echo "  5. Paste your API key value"
 echo ""
